@@ -41,8 +41,8 @@ ls -al "$src_dir"
 ls -al "$PLUGIN_DIR"
 
 docker run --rm \
-	   --volume "$src_dir/ruby:/src:ro" \
-	   --volume "$artifacts_dir:/junits" \
+	   --mount type=bind,source="$src_dir/ruby",target=/src \
+	   --mount type=bind,source="$artifacts_dir",target=/junits \
 	   busybox ls -alR /src /junits
 
 docker \
