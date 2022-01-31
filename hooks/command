@@ -35,8 +35,9 @@ cp junit.xml "$artifacts_dir"
 echo "--- :junit: Processing the junits"
 
 set +e
-cp -r "$PLUGIN_DIR/ruby/*" "$src_dir/"
-ls -al "$src_dir"
+ls "$PLUGIN_DIR"
+cp -r "$PLUGIN_DIR/ruby" "$src_dir/"
+ls -al "$PLUGIN_DIR"
 
 docker \
   --log-level "error" \
