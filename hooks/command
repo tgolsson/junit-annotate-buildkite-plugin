@@ -7,8 +7,8 @@ MAX_SIZE=1024 # in KB
 
 echo "--- :junit: Download the junits"
 
-artifacts_dir="$(pwd)/$(mktemp -d "junit-annotate-plugin-artifacts-tmp.XXXXXXXXXX")"
-annotation_dir="$(pwd)/$(mktemp -d "junit-annotate-plugin-annotation-tmp.XXXXXXXXXX")"
+artifacts_dir="/tmp/$(mktemp -d "junit-annotate-plugin-artifacts-tmp.XXXXXXXXXX")"
+annotation_dir="/tmp/$(mktemp -d "junit-annotate-plugin-annotation-tmp.XXXXXXXXXX")"
 annotation_path="${annotation_dir}/annotation.md"
 annotation_style="info"
 fail_build=0
