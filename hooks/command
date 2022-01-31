@@ -42,7 +42,8 @@ ls -al "$PLUGIN_DIR"
 
 docker run --rm \
 	   --volume "$src_dir/ruby:/src:ro" \
-	   busybox ls -alR /src
+	   --volume "$artifacts_dir:/junits" \
+	   busybox ls -alR /src /junits
 
 docker \
   --log-level "error" \
