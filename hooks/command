@@ -36,6 +36,8 @@ echo "--- :junit: Processing the junits"
 set +e
 cp -r "$PLUGIN_DIR" "$src_dir"
 
+ls "$src_dir/bin/annotate"
+
 docker \
   --log-level "error" \
   run \
