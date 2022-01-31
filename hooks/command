@@ -38,6 +38,7 @@ set +e
 ls "$PLUGIN_DIR"
 cp -r "$PLUGIN_DIR/ruby" "$src_dir/"
 ls -al "$PLUGIN_DIR"
+ls -al "$src_dir"
 
 docker \
   --log-level "error" \
