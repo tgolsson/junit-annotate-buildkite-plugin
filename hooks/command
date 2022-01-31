@@ -27,17 +27,22 @@ function check_size {
 
 trap cleanup EXIT
 
-buildkite-agent artifact download \
-  "${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_ARTIFACTS}" \
-  "$artifacts_dir"
- 
+# buildkite-agent artifact download \
+#   "${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_ARTIFACTS}" \
+#   "$artifacts_dir"
+
+cp junit.xml "$artifacts_dir"
 echo "--- :junit: Processing the junits"
 
 set +e
 cp -r "$PLUGIN_DIR" "$src_dir"
 
 ls -alR "$src_dir/ruby"
-ls "$src_dir/ruby/bin/annotate"
+ls "$src_dir/ruby/bin/annotate"  # exists
+
+docker run --rm \
+	   --volume "$src_dir/ruby:/src:ro" \
+	   busybox ls -alR /src
 
 docker \
   --log-level "error" \
