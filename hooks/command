@@ -39,7 +39,7 @@ cp -r "$PLUGIN_DIR" "$src_dir"
 
 docker run --rm \
 	   --volume "$src_dir/ruby:/src:ro" \
-	   busybox ls -alR /src
+	   busybox ls -alR /src/bin/annotate
 
 docker \
   --log-level "error" \
