@@ -27,11 +27,12 @@ function check_size {
 
 trap cleanup EXIT
 
-buildkite-agent artifact download \
-  "${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_ARTIFACTS}" \
-  "$artifacts_dir"
-
-echo "--- :junit: Processing the junits"
+cp junit.xml "$artifacts_dir"
+# buildkite-agent artifact download \
+#   "${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_ARTIFACTS}" \
+#   "$artifacts_dir"
+ 
+# echo "--- :junit: Processing the junits"
 
 set +e
 cp -r "$PLUGIN_DIR" "$src_dir"
@@ -76,5 +77,5 @@ if ((fail_build)); then
   echo "--- :boom: Failing build due to error"
   exit 1
 else
-  exit 0
+  exit 1
 fi
