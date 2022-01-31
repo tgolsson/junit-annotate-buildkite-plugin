@@ -37,8 +37,8 @@ echo "--- :junit: Processing the junits"
 set +e
 cp -r "$PLUGIN_DIR" "$src_dir"
 
-ls "$src_dir"
-ls "$PLUGIN_DIR"
+ls -al "$src_dir"
+ls -al "$PLUGIN_DIR"
 
 docker run --rm \
 	   --volume "$src_dir/ruby:/src:ro" \
