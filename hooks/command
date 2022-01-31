@@ -9,6 +9,7 @@ echo "--- :junit: Download the junits"
 
 artifacts_dir=$(mktemp -d "/tmp/junit-annotate-plugin-artifacts-tmp.XXXXXXXXXX")
 annotation_dir=$(mktemp -d "/tmp/junit-annotate-plugin-annotation-tmp.XXXXXXXXXX")
+src_dir=$(mktemp -d "/tmp/junit-annotate-plugin-src-tmp.XXXXXXXXXX")
 annotation_path="${annotation_dir}/annotation.md"
 annotation_style="info"
 fail_build=0
@@ -33,12 +34,14 @@ buildkite-agent artifact download \
 echo "--- :junit: Processing the junits"
 
 set +e
+cp -r "$PLUGIN_DIR/ruby" "$src_dir"
+
 docker \
   --log-level "error" \
   run \
     --rm \
     --volume "$artifacts_dir:/junits" \
-    --volume "$PLUGIN_DIR/ruby:/src:ro" \
+    --volume "$src_dir:/src:ro" \
     --env "BUILDKITE_PLUGIN_JUNIT_ANNOTATE_JOB_UUID_FILE_PATTERN=${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_JOB_UUID_FILE_PATTERN:-}" \
     --env "BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAILURE_FORMAT=${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAILURE_FORMAT:-}" \
     --env "BUILDKITE_PLUGIN_JUNIT_ANNOTATE_REPORT_SLOWEST=${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_REPORT_SLOWEST:-}" \
