@@ -36,9 +36,9 @@ echo "--- :junit: Processing the junits"
 
 set +e
 ls "$PLUGIN_DIR"
-cp -r "$PLUGIN_DIR/ruby" "$src_dir/"
+cp -r "$PLUGIN_DIR/ruby/*" "$src_dir"
 ls -al "$PLUGIN_DIR"
-ls -al "$src_dir"
+ls -alR "$src_dir"
 
 docker \
   --log-level "error" \
